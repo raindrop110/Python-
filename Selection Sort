@@ -1,0 +1,35 @@
+def selection_sort(lst):
+  newlst = []
+  for i in range(len(lst)):
+    s = lst[0]
+    for i in lst:
+      if i < s:
+        s = i
+    newlst.append(s)
+    lst.remove(s)
+    
+  return newlst
+  
+  
+print(selection_sort([1,3,4,2,5,6]))
+        
+    
+def selection_sort2(lst):
+
+  for i in range(len(lst)):
+    s = lst[i]
+    idx = i
+    for j in range(i,len(lst)):
+      if lst[j] < s:
+        s = lst[j]
+        idx = j
+    holder = lst[i]
+    lst[i] = s
+    lst[idx] = holder
+    
+    #swapminimum index and i
+    
+    
+  return lst
+  
+print(selection_sort2([1,3,4,2,5,6]))
