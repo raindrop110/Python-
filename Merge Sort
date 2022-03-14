@@ -1,0 +1,54 @@
+
+
+# [10, 9 , 8, 7, 6, 5, 4, 3, 2, 1]
+# [10, 9, 8, 7, 6] [5, 4, 3, 2, 1]
+# [10, 9, 8][7, 6]
+# [10, 9][8]
+# [10][9]
+# [9, 10][8]
+# [8, 9, 10][7, 6]
+#           [7][6]
+#           [6, 7]
+# [8, 9, 10][6, 7]
+# [6, 7, 8, 9, 10][5, 4, 3][2, 1]
+# ... rinse and repeat                
+
+#base case: list has a length of 1
+#recursive call:
+  #function call on left side
+  #function call on right side
+  
+def merge_func(one, two):
+  final = []
+  i = 0 
+  j = 0 
+  while i < len(one) and j < len(two):
+    if one[i] < two[j]:
+      final.append(one[i])
+      i = i +1
+    else:
+      final.append(two[j])
+      j = j +1
+  
+  if i >= len(one):
+    final += two[j:]
+  elif j>= len(two):
+    final+= one[i:]
+  
+  return final
+  
+def merge_sort(lst):
+  if len(lst) <= 1:
+    return lst
+   
+  mid = len(lst)//2
+  #print(lst[:mid])
+  #print(lst[mid:])
+  first = merge_sort(lst[:mid])
+  second = merge_sort(lst[mid:])
+  #print(first, second)
+  return merge_func(first, second)
+
+print(merge_sort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+
+print(merge_func([1, 3, 7], [2, 4, 5]))
