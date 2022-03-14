@@ -1,0 +1,142 @@
+# f(n) = 12n^2 + n  -> O(n^2)
+
+
+# f(n) = n - sqrt(n) + 0 -> O(n)
+
+
+# f(n) = 11,000,000n + 5 -> O(n)
+
+
+# f(n) = 1,000,000n - 1,000,000 -> O(n)
+
+
+# f(n) = 1,234,567 + 6 - 5 -> O(1)
+
+
+# f(n) = log(n) + 2 -> O(log(n))
+
+
+# f(n) = n + log(n) -> O(n)
+
+
+# These next 3 are challenge problems!
+# f(n) = 1 + 2 + 3 + 4 + 5 + 6 ... + n (The exact sum is n(n+1)/2) -> O(n^2)
+
+
+# f(n, m) = 3log2(n) + m^2 -> O(log(n)+m^2)
+
+
+# f(n) = 1 + f(n/2) -> O(log(n))
+# f(1) = 0 
+
+
+#functioni analysis
+# Notation: O(n). I got this answer because the simple step is print(i)but it is in the loop so it will worst case run n times because n is the size of the input.
+def f1(n):
+  for i in range(n):
+    print(i)
+    
+
+# Notation: O(n).  one loop so linear
+def f2(n):
+  for i in range(n // 2):
+    print(i)
+ 
+#Notation: O(n^2) two loops
+def f3(n):
+  k = 0
+  for i in range(n // 2):
+    for j in range(n // 4):
+      k += 1
+      print(k)
+
+#Notation: O(n^2) two loops
+def f4(n):
+  k = 0
+  for i in range(n):
+    for j in range(i):
+      k += 1
+      print(k)
+
+# Notation: O(n) is a linear function because there is one simple statement,
+def f5(n):
+  if (n <= 0):
+    return
+  else:
+    print(n)
+    f5(n-1)
+
+#Notation: O(log(n)) the function has a base 2 because the numbers are log
+
+def f6(n):
+  if (n == 1):
+    return
+  else:
+    print(n)
+    f6(n // 2)
+
+
+# Notations: O(n^3) - three loops 
+def f7(n):
+  for i in range(n):
+    for j in range(n):
+      for k in range(n):
+        print(i, j, k)
+  return
+
+# Notation: O(n+m) because there are two inputs the runtime would be the length of n + the length of the other input m
+def f8(n, m):
+  for i in range(n):
+    print(i)
+  for i in range(m):
+    print(i)
+
+# Notations: O(n*m) again there are two nested loops with lengths of two inputs n and m, so the notation would be O(n*m) because they are nested loops
+def f9(n, m):
+  for i in range(m):
+    for j in range(n):
+      print(i, j)
+
+# Notation O(n) because there are two loops but the inside loop goes n times but then is not done again because the return right after it stops the function, so even though m could be more than 1, the loop with for i in range(m) will only go one time, therefore the runtime is just based on n.
+def f10(n, m):
+  for i in range(m):
+    for j in range(n):
+      print(i, j)
+    return
+
+
+""" For the list problems below: assume the length list is N
+    Note: all lists are of INTEGERS (this includes negative numbers and zero) """
+
+#Notation would be O(n) because there is one loop that does something with each element of the list that has n things in it, or length n
+def f11(lst):
+  for item in lst:
+    print(item)
+
+
+# Natation would be O(n^2) because there are two loops that use n and the worst case would be that the return True never happens because the condition is never met so then the runtime would be n^2
+def f12(lst):
+  n = len(lst)
+  for i in range(n):
+    item1 = lst[i]
+    for j in range(n):
+      item2 = lst[j]
+      if i == j:
+        continue
+      if item1 == item2:
+        return True
+  return False
+
+# Notation would be O(n) because the worst case would be that we would have to go through all items in the list because none of them are equal to zero therefore the notation is o(n)
+def f13(lst):
+  for item in lst:
+    if item == 0:
+      return True
+  return False 
+
+#Notation would be  again O(n) because the worst case is we would go through every item in the the list and none are equal to one so none make the function return early.
+def f14(lst):
+  for item in lst:
+    if item == 1:
+      return True
+  return False
