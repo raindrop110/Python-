@@ -1,0 +1,42 @@
+def linear_search(lst, value):
+  for i in lst:
+    if i == value:
+      return True
+  return False
+  
+print(linear_search([5, 8, 5, 2, 9], 6))
+print(linear_search([5, 8, 5, 2, 9], 2))
+
+l = [0,1,3,4,5,7,8]
+  
+def binary_search(lst, n):
+  start = 0
+  end = len(lst)-1
+  
+  while start <= end:
+    mid = (end+start)//2
+    if lst[mid] == n:
+      return True
+    elif n < lst[mid]:
+      end = mid -1
+    else:
+      start = mid +1
+  return False
+  
+print(binary_search(l, ))
+
+
+def bin_search_r(lst,n):
+  if len(lst) < 1:
+    return False
+  
+  i = len(lst)//2
+  
+  if lst[i] == n:
+    return True
+  elif lst[i] < n:
+    return bin_search_r(lst[i+1:],n)
+  return bin_search_r(lst[:i],n)
+  
+#print(bin_search_r(l,9))
+#print(bin_search_r(l,5))
