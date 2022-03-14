@@ -1,0 +1,106 @@
+#recursive cascade
+def bcascade(s):
+  if len(s) == 1:
+    return s
+  return s + "\n" + bcascade(s[:-1])
+  
+print(bcascade("Happy"))
+print("\n")
+
+def fcascade(s):
+  if len(s) == 1:
+    return s 
+  return fcascade(s[:len(s)-1]) + "\n" + s 
+  
+print(fcascade("america"))
+
+#recursive palindrome checker
+
+def rpam(string):
+  if len(string) == 1 or len(string) == 0:
+    return True #because we know that they are palindromes then
+    
+  if string[0] != string[-1]:
+    return False
+    
+  return rpam(string[1:-1])
+  
+word = input("Enter the string you would like to check. \nWe will check if it is a palimdrome: ")
+
+print(rpam(word))
+
+#Parentheses Validator
+
+string1 = "((([])))"
+string2 = "([]{})"
+string3 = "([]{)}"
+string4 = "[]{[()]}{{]}"
+
+
+def pv(string):
+  pairs = {"(" :")", "[" : "]", "{" : "}"}
+  stack = []
+
+  
+  for p in string:
+    if p in pairs:
+      stack.append(p)
+    else: #p in pairs.values():
+      if pairs[stack[-1]] != p:
+        return False
+      stack.pop()
+  return True
+
+print(pv(string1),pv(string2),pv(string3), pv(string4))
+
+#recursively
+
+
+
+pairs = {"(" :")", "[" : "]", "{" : "}"}
+stack = []
+
+def pv_r(string):
+  
+  
+  if len(string) == 0:
+    return True
+ 
+  if string[0] in pairs:
+    stack.append(string[0])
+  else: 
+    if pairs[stack[-1]] != string[0]:
+      return False
+    stack.pop()
+  return pv_r(string[1:])
+
+  
+#""
+#"[{}["
+
+
+print(pv_r(string1),pv_r(string2),pv_r(string3), pv_r(string4))
+
+def pv2(string):
+  #print(string)
+  
+  if len(string) == 0:
+    return True
+    
+  for i in range(len(string)-1):
+    c = string[i] + string[i+1]
+    if c == "()" or c =="[]" or c =="{}":
+      newStr = string[:i] + string[i+2:]
+      return pv2(newStr)
+    
+      
+  
+  return False
+  
+#((()))
+"([]})"
+
+print(pv2(string1))
+print(pv2(string2))
+print(pv2(string3))
+print(pv2(string4))
