@@ -1,0 +1,12 @@
+def insertion_sort(lst):
+  for i in range(len(lst)):
+    insert = i
+    while insert != 0 and lst[insert] < lst[insert-1]:
+      temp = lst[insert -1]
+      lst[insert-1] = lst[insert]
+      lst[insert] = temp
+      insert = insert - 1
+  return lst
+
+
+print(insertion_sort([58, 24 , 54, 2, 199, 30, 69, 23, 7, 11, 29]))
